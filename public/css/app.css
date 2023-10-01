@@ -1,0 +1,16 @@
+
+.container
+{
+    padding-top: 70px;
+}
+
+
+.card
+{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
