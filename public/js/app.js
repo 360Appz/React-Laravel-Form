@@ -2152,6 +2152,11 @@ function DisplayForm() {
     _useState2 = _slicedToArray(_useState, 2),
     formData = _useState2[0],
     setFormData = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    message = _useState4[0],
+    setMessage = _useState4[1]; // Initialize with  empty message
+
   var submitData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
       var response;
@@ -2164,18 +2169,20 @@ function DisplayForm() {
             return axios__WEBPACK_IMPORTED_MODULE_3___default().post('api/storeData', formData);
           case 4:
             response = _context.sent;
+            setMessage('Success: Data stored successfully');
             console.log(response.data);
-            _context.next = 11;
+            _context.next = 13;
             break;
-          case 8:
-            _context.prev = 8;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](1);
+            setMessage('Error: Failed to store data');
             console.error(_context.t0);
-          case 11:
+          case 13:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[1, 8]]);
+      }, _callee, null, [[1, 9]]);
     }));
     return function submitData(_x) {
       return _ref.apply(this, arguments);
@@ -2188,15 +2195,17 @@ function DisplayForm() {
     setFormData(_objectSpread(_objectSpread({}, formData), {}, _defineProperty({}, name, value)));
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    className: "container text-center",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("nav", {
-      className: "navbar navbar-expand-lg navbar-light bg-light",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        className: "container",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
-          className: "navbar-brand",
-          href: "#",
-          children: "Registration Form"
+    className: "container ",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("nav", {
+        className: "navbar navbar-light bg-light",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "container",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+            className: "navbar-brand",
+            href: "#",
+            children: "Registration Form"
+          })
         })
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -2204,13 +2213,13 @@ function DisplayForm() {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "card",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "card-body",
+          className: "card-body text-center",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
             onSubmit: submitData,
             method: "POST",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
               htmlFor: "name",
-              "class": "form-label",
+              className: "form-label",
               children: "Name"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
               type: "text",
@@ -2266,6 +2275,10 @@ function DisplayForm() {
           })
         })
       })
+    }), message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "alert ".concat(message.startsWith('Success') ? 'alert-success' : 'alert-danger', " mt-3"),
+      role: "alert",
+      children: message
     })]
   });
 }

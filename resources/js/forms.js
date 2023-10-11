@@ -11,13 +11,18 @@ export default function DisplayForm() {
     remarks: '',
   });
 
+  const [message, setMessage] = useState(''); // Initialize with  empty message
+
   const submitData = async (event) => {
     event.preventDefault(); // Prevent form submission
 
     try {
       const response = await axios.post('api/storeData', formData);
+      setMessage('Success: Data stored successfully');
       console.log(response.data);
+
     } catch (error) {
+      setMessage('Error: Failed to store data');
       console.error(error);
     }
   };
@@ -31,21 +36,24 @@ export default function DisplayForm() {
   };
 
   return (
+    
  
 
-    <div className="container text-center">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <div className="container ">
+      <div>
+      <nav className="navbar navbar-light bg-light">
         <div className="container">
           <a className="navbar-brand" href="#">
             Registration Form
           </a>
           </div>
       </nav>
+      </div>
       <div className="row align-items-center">
       <div className="card">
-    <div className="card-body">
+    <div className="card-body text-center">
         <form onSubmit={submitData} method="POST">
-          <label htmlFor="name" class="form-label">Name</label><br />
+          <label htmlFor="name" className="form-label">Name</label><br />
           <input
             type="text"
             className="form-control"
@@ -96,7 +104,13 @@ export default function DisplayForm() {
         </form>
         </div>
       </div>
+      
       </div>
+      {message && (
+      <div className={`alert ${message.startsWith('Success') ? 'alert-success' : 'alert-danger'} mt-3`} role="alert">
+          {message}
+        </div>
+        )}
     </div>
   
   );
